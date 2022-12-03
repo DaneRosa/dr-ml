@@ -1,8 +1,7 @@
 """
 Codebreaker
 """
-
-
+import cProfile
 def dr_test(x, y, box, code, old_guesses, count):
     for e in range(x):
         guess_code = []
@@ -75,5 +74,11 @@ def codebreaker():
     code = box[:y]
     dr_test(x,y,box,code,old_guesses,count)
 
-if __name__ == '__main__':
-    codebreaker()
+# if __name__ == '__main__':
+profiler = cProfile.Profile()
+profiler.enable()
+
+codebreaker()
+
+profiler.disable()
+profiler.dump_stats("main.stats")
